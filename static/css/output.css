@@ -2201,11 +2201,6 @@ video {
   letter-spacing: 0.05em
 }
 
-.text-amber-200 {
-  --tw-text-opacity: 1;
-  color: rgb(253 230 138 / var(--tw-text-opacity, 1))
-}
-
 .text-charcoal {
   --tw-text-opacity: 1;
   color: rgb(51 51 51 / var(--tw-text-opacity, 1))
@@ -2358,6 +2353,22 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:col-span-6 {
+    grid-column: span 6 / span 6
+  }
+
+  .md\:col-span-10 {
+    grid-column: span 10 / span 10
+  }
+
+  .md\:col-span-3 {
+    grid-column: span 3 / span 3
+  }
+
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2
+  }
+
   .md\:flex {
     display: flex
   }
