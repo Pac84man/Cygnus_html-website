@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.getElementById('submit-button');
 
     // IMPORTANT: Replace this placeholder with your actual Google reCAPTCHA Site Key
-    const recaptchaSiteKey = 'YOUR_RECAPTCHA_SITE_KEY_HERE';
+    const recaptchaSiteKey = '6LctiewrAAAAALn-KJfqW-0XICvX4NAiRUqSWMSS';
 
     // We only run the form logic if the form element actually exists on the page
     if (contactForm) {
