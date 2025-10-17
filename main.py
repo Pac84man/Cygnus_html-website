@@ -57,7 +57,7 @@ async def handle_contact_form(request: Request, form_data: ContactForm):
             form_data.message
         )
         # 3. Send email AFTER database success
-        await send_contact_email(form_data)
+        # await send_contact_email(form_data) # <-- THIS LINE IS TEMPORARILY DISABLED FOR TESTING
     except Exception as e:
         print(f"Database or Email error: {e}")
         raise HTTPException(status_code=500, detail="Could not save your message. Please try again later.")
