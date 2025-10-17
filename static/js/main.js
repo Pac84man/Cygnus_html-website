@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                     .catch(error => {
                         // Display any errors to the user
-                        formStatus.textContent = error.message;
+                        formStatus.textContent = error;
                         formStatus.classList.add('text-red-600');
                     })
                     .finally(() => {
