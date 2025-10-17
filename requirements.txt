@@ -1,3 +1,11 @@
 fastapi
 uvicorn[standard]
 jinja2
+
+databases[postgresql]
+asyncpg
+python-dotenv
+slowapi
+httpx
+sendgrid
+pydantic[email]

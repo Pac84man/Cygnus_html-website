@@ -209,14 +209,42 @@
           Fill out the form below, and we'll be in touch to discuss how Cygnus can transform your digital presence. No pressure, just a friendly conversation.
         </p>
       </div>
-      <form data-aos="fade-left" data-aos-duration="900" action="#" method="POST" class="space-y-6">
-        <!-- ... Form Inputs ... -->
-         <div><label for="name" class="sr-only">Full Name</label><input type="text" name="name" id="name" placeholder="Full Name" required class="w-full px-4 py-3 rounded-md border border-medium-grey/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-deep-blue transition-shadow"/></div>
-        <div><label for="email" class="sr-only">Email Address</label><input type="email" name="email" id="email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-md border border-medium-grey/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-deep-blue transition-shadow"/></div>
-        <div><label for="website" class="sr-only">Your Current Website URL (Optional)</label><input type="url" name="website" id="website" placeholder="Your Current Website URL (Optional)" class="w-full px-4 py-3 rounded-md border border-medium-grey/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-deep-blue transition-shadow"/></div>
-        <div><label for="message" class="sr-only">Message</label><textarea name="message" id="message" rows="5" placeholder="Tell us about your project..." required class="w-full px-4 py-3 rounded-md border border-medium-grey/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-deep-blue transition-shadow"></textarea></div>
-        <button type="submit" class="w-full bg-deep-blue text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-opacity-90 transform hover:scale-105 transition-all duration-300">Send Inquiry</button>
-      </form>
+
+      <!-- === MODIFIED FORM STARTS HERE === -->
+      <div data-aos="fade-left" data-aos-duration="900">
+        <form id="contact-form" class="space-y-6" novalidate>
+
+          <div>
+            <label for="name" class="sr-only">Full Name</label>
+            <input type="text" name="name" id="name" placeholder="Full Name" required class="w-full px-4 py-3 rounded-md border border-medium-grey/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-deep-blue transition-shadow"/>
+          </div>
+
+          <div>
+            <label for="email" class="sr-only">Email Address</label>
+            <input type="email" name="email" id="email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-md border border-medium-grey/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-deep-blue transition-shadow"/>
+          </div>
+
+          <div>
+            <label for="website_url" class="sr-only">Your Current Website URL (Optional)</label>
+            <!-- Note the name change here to match the backend -->
+            <input type="url" name="website_url" id="website_url" placeholder="Your Current Website URL (Optional)" class="w-full px-4 py-3 rounded-md border border-medium-grey/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-deep-blue transition-shadow"/>
+          </div>
+
+          <div>
+            <label for="message" class="sr-only">Message</label>
+            <textarea name="message" id="message" rows="5" placeholder="Tell us about your project..." required class="w-full px-4 py-3 rounded-md border border-medium-grey/50 bg-white/50 focus:outline-none focus:ring-2 focus:ring-deep-blue transition-shadow"></textarea>
+          </div>
+
+          <button type="submit" id="submit-button" class="w-full bg-deep-blue text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-opacity-90 transform hover:scale-105 transition-all duration-300">
+            Send Inquiry
+          </button>
+        </form>
+
+        <!-- This div is for success/error messages -->
+        <div id="form-status" class="mt-6 text-center text-lg"></div>
+      </div>
+      <!-- === MODIFIED FORM ENDS HERE === -->
+
     </div>
   </div>
 </section>

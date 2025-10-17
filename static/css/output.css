@@ -1782,6 +1782,10 @@ video {
   margin-top: 0.5rem
 }
 
+.mt-6 {
+  margin-top: 1.5rem
+}
+
 .mt-auto {
   margin-top: auto
 }
@@ -2353,18 +2357,6 @@ video {
 }
 
 @media (min-width: 768px) {
-  .md\:col-span-6 {
-    grid-column: span 6 / span 6
-  }
-
-  .md\:col-span-10 {
-    grid-column: span 10 / span 10
-  }
-
-  .md\:col-span-3 {
-    grid-column: span 3 / span 3
-  }
-
   .md\:col-span-2 {
     grid-column: span 2 / span 2
   }
