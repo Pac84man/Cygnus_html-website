@@ -1,7 +1,5 @@
 // static/js/main.js
 
-// static/js/main.js
-
 document.addEventListener('DOMContentLoaded', () => {
     // This initializes our animations. We keep this code.
     AOS.init({
@@ -17,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formStatus = document.getElementById('form-status');
     const submitButton = document.getElementById('submit-button');
 
-    // IMPORTANT: Replace this placeholder with your actual Google reCAPTCHA Site Key
+    // This is your actual reCAPTCHA Site Key
     const recaptchaSiteKey = '6LctiewrAAAAALn-KJfqW-0XICvX4NAiRUqSWMSS';
 
     // We only run the form logic if the form element actually exists on the page
@@ -41,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const data = Object.fromEntries(formData.entries());
                     data.recaptcha_token = token; // Add the token to our data payload
 
-                    // Send the data to our backend API endpoint
+                    // --- THIS IS THE UPDATED FETCH BLOCK ---
                     fetch('/api/contact', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -50,7 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(response => {
                         // If the server returns an error, handle it
                         if (!response.ok) {
-                            return response.json().then(err => { throw new Error(err.detail || 'Something went wrong.') });
+                            // We need to parse the JSON body of the error response
+                            return response.json().then(err => {
+                                // Dig into the response to find the real message from FastAPI
+                                if (err.detail && Array.isArray(err.detail) && err.detail[0]) {
+                                    throw new Error(err.detail[0].msg);
+                                }
+                                // Fallback for other types of errors
+                                throw new Error(err.detail || 'An unexpected error occurred.');
+                            });
                         }
                         // Otherwise, process the successful response
                         return response.json();
@@ -62,8 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         contactForm.reset(); // Clear the form fields
                     })
                     .catch(error => {
-                        // Display any errors to the user
-                        formStatus.textContent = error;
+                        // Display the clean, human-readable error message
+                        formStatus.textContent = error.message;
                         formStatus.classList.add('text-red-600');
                     })
                     .finally(() => {
@@ -71,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         submitButton.disabled = false;
                         submitButton.textContent = 'Send Inquiry';
                     });
+                    // --- END OF UPDATED FETCH BLOCK ---
                 });
             });
         });
