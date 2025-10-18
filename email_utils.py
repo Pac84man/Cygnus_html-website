@@ -5,12 +5,16 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from schemas import ContactForm
 
-SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
-EMAIL_FROM_ADDRESS = os.getenv('EMAIL_FROM_ADDRESS')
-EMAIL_TO_ADDRESS = os.getenv('EMAIL_TO_ADDRESS')
-
+# We will no longer read the variables here.
 
 async def send_contact_email(form_data: ContactForm):
+    # --- THIS IS THE KEY CHANGE ---
+    # We now read the environment variables from INSIDE the function.
+    # This guarantees that load_dotenv() has already run.
+    SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+    EMAIL_FROM_ADDRESS = os.getenv('EMAIL_FROM_ADDRESS')
+    EMAIL_TO_ADDRESS = os.getenv('EMAIL_TO_ADDRESS')
+
     if not all([SENDGRID_API_KEY, EMAIL_FROM_ADDRESS, EMAIL_TO_ADDRESS]):
         print("Email environment variables not set. Skipping email.")
         return
@@ -40,7 +44,7 @@ async def send_contact_email(form_data: ContactForm):
 
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
-        response = await sg.send(message)
+        response = sg.send(message)
         print(f"Email sent with status code: {response.status_code}")
     except Exception as e:
         # We print errors but don't crash the app if email fails
